@@ -1,7 +1,7 @@
 import random
 import flet as ft
 
-from models import Suite, Rank
+from model import Suite, Rank
 from slot import Slot
 from card import Card
 
@@ -52,7 +52,7 @@ class Solitaire(ft.Stack):
                 border=ft.border.all(1, ft.Colors.WHITE),
             )
             self.foundations.append(foundation)
-            x += 90  
+            x += 100
 
         x = 0
         for _ in range(7):
@@ -131,9 +131,10 @@ class Solitaire(ft.Stack):
             return (
                 card.suite.color != top_card.suite.color
                 and card.rank.value == top_card.rank.value - 1
+                and top_card.face_up
             )
         else:
-            return True  
+            return card.rank.name == "King"
 
     def check_foundation_rules(self, card, slot):
         top_card = slot.get_top_card()
@@ -145,3 +146,35 @@ class Solitaire(ft.Stack):
             card.suite.name == top_card.suite.name
             and card.rank.value == top_card.rank.value + 1
         )
+
+    def restart_stock(self):
+        while len(self.waste.pile) > 0:
+            card = self.waste.get_top_card()
+            card.turn_face_down()
+            card.move_on_top()
+            card.place(self.stock)
+
+        self.update()
+
+    def check_win(self):
+        total = 0
+        for slot in self.foundations:
+            total += len(slot.pile)
+        return total == 52
+
+    def winning_sequence(self):
+        for slot in self.foundations:
+            for card in slot.pile:
+                card.animate_position = 1000
+                card.move_on_top()
+                card.top = random.randint(0, SOLITAIRE_HEIGHT - 100)
+                card.left = random.randint(0, SOLITAIRE_WIDTH - 70)
+
+        self.update()
+
+        dlg = ft.AlertDialog(
+            title=ft.Text("Parabéns! Você venceu!")
+        )
+        self.page.dialog = dlg
+        dlg.open = True
+        self.page.update()
