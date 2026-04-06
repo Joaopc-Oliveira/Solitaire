@@ -1,74 +1,81 @@
 # Solitaire Pro
 
-## Descrição
-O **Solitaire Pro** é uma aplicação desenvolvida em **Python** com a framework **Flet**, baseada no jogo clássico Solitaire.  
-A aplicação permite jogar através de interface gráfica, com suporte para ações como mover cartas entre colunas, enviar cartas para as fundações, reiniciar o jogo, desfazer jogadas e personalizar o visual das cartas.
+## Descrição do Projeto
 
-Além das funcionalidades base do tutorial, foram também implementadas funcionalidades extra obrigatórias e duas funcionalidades adicionais escolhidas para melhorar a experiência de utilização.
+O **Solitaire Pro** é uma aplicação desenvolvida em Python com a framework Flet, baseada no clássico jogo de cartas Solitaire. O projeto foi desenvolvido no âmbito da unidade curricular de Computação Móvel, com o objetivo de consolidar a utilização da framework Flet em aplicações interativas com interface gráfica.
 
----
-
-## Funcionalidades implementadas
-
-### Funcionalidades base
-- Jogo de Solitaire funcional
-- Tableau, stock, waste e foundations
-- Drag and drop de cartas
-- Regras de movimento entre colunas e fundações
-- Deteção de vitória
-
-### Funcionalidades extra obrigatórias
-- Reiniciar jogo
-- Desfazer jogadas
-- Guardar estado do jogo
-- Escolher a traseira das cartas entre 4 opções
-- Sistema de pontuação
-- Cronómetro visível durante toda a partida
-
-### Funcionalidades adicionais (Objetivo 3)
-- Tema **dark/light**
-- Botão de **novo jogo aleatório**
+A aplicação permite jogar Solitaire com as regras principais do modo clássico, incluindo movimentação de cartas entre colunas, fundações, pilha de compra e descarte. Foram ainda adicionadas funcionalidades obrigatórias e funcionalidades extra para melhorar a experiência de utilização.
 
 ---
 
-## Funcionalidade extra 1: Tema dark/light
-Foi adicionada a possibilidade de alternar entre um tema visual mais claro, com o tabuleiro verde tradicional, e um tema mais escuro.  
-Esta funcionalidade foi escolhida por ser útil em diferentes contextos de utilização. Num ambiente com pouca luz, o tema escuro torna a interface mais confortável para o utilizador, reduzindo o impacto visual e melhorando a legibilidade. Já o tema clássico mantém uma aparência semelhante ao jogo tradicional, tornando a experiência mais familiar.
+## Funcionalidades Obrigatórias Implementadas
 
-A alternância é feita através de um botão disponível na barra superior da aplicação. Assim, o utilizador pode mudar rapidamente o aspeto visual da interface sem interromper a partida.  
-Esta melhoria contribui para a personalização da aplicação e para uma melhor experiência de utilização, especialmente em dispositivos móveis, onde a adaptação visual é importante.
-
----
-
-## Funcionalidade extra 2: Novo jogo aleatório
-Foi adicionada uma opção de **novo jogo aleatório**, que permite começar imediatamente uma nova partida com uma distribuição diferente das cartas.  
-Esta funcionalidade difere da opção de reiniciar, pois o reinício mantém a lógica da mesma sessão, enquanto o novo jogo cria uma nova configuração aleatória desde o início.
-
-A principal vantagem desta funcionalidade é aumentar a rejogabilidade. O utilizador pode iniciar rapidamente uma nova partida sem precisar de fechar ou recarregar a aplicação.  
-Esta opção também melhora a usabilidade, porque oferece uma forma simples e direta de continuar a jogar, tornando a interação mais fluida. Em contexto académico, esta funcionalidade demonstra também a capacidade de controlar o estado interno da aplicação e gerar novas sessões de jogo de forma organizada.
+* Reiniciar o jogo
+* Desfazer jogadas (undo)
+* Guardar estado do jogo
+* Alterar verso das cartas
+* Sistema de pontuação
+* Cronómetro visível durante toda a partida
 
 ---
 
-## Guardar estado
-A aplicação inclui uma funcionalidade de guardar estado, utilizando armazenamento local disponível no navegador.  
-São guardados elementos relevantes como a pontuação, o tempo decorrido e o verso atualmente selecionado para as cartas. Isto permite preservar informação entre execuções da aplicação.
+## Funcionalidades Extra – Objetivo 3
+
+## 1. Tema Dark / Light
+
+Uma das funcionalidades extra implementadas foi a possibilidade de alternar entre dois temas visuais da aplicação: modo claro e modo escuro. Esta funcionalidade foi adicionada com o objetivo de melhorar a experiência de utilização e tornar a interface mais confortável em diferentes condições de iluminação, sobretudo em dispositivos móveis, onde o utilizador pode jogar em ambientes com pouca luz.
+
+A implementação foi feita através de um botão disponível na barra superior da aplicação, identificado com o ícone de tema. Quando o utilizador carrega nesse botão, a cor de fundo principal do jogo altera entre verde tradicional e um tom escuro, mantendo a legibilidade dos elementos visuais principais. Esta mudança é imediata e não interfere com o estado atual do jogo.
+
+A escolha desta funcionalidade prende-se com o facto de muitas aplicações modernas oferecerem modos visuais alternativos, permitindo maior personalização e adaptação às preferências do utilizador. Embora tecnicamente simples, representa uma melhoria relevante ao nível da usabilidade.
+
+Para utilizar esta funcionalidade basta clicar no botão de tema localizado no topo da interface. O estado visual muda automaticamente, podendo ser alternado sempre que necessário durante a partida.
 
 ---
 
-## Estrutura do projeto
+## 2. Novo Jogo Aleatório
 
-- `main.py` — ponto de entrada da aplicação
-- `solitaire.py` — lógica principal do jogo
-- `card.py` — definição e comportamento das cartas
-- `slot.py` — definição dos espaços/pilhas
-- `model.py` — classes auxiliares (`Suite` e `Rank`)
-- `images/` — imagens das cartas e recursos visuais
+A segunda funcionalidade extra implementada foi a criação de um botão de novo jogo aleatório. Esta funcionalidade permite iniciar imediatamente uma nova partida com uma distribuição diferente de cartas, sem necessidade de reiniciar toda a aplicação.
+
+A sua inclusão teve como objetivo melhorar a fluidez da experiência de jogo, permitindo ao utilizador testar rapidamente novas combinações de cartas e iniciar várias partidas consecutivas de forma mais prática. Em jogos de cartas como o Solitaire, esta funcionalidade é bastante relevante porque aumenta a rejogabilidade.
+
+A implementação reutiliza a lógica já existente de criação de jogo, limpando o estado atual, reorganizando as cartas e distribuindo novamente o baralho de forma aleatória. O cronómetro é reiniciado, a pontuação volta a zero e todas as pilhas são reconstruídas.
+
+A funcionalidade encontra-se acessível através do botão **Novo Jogo**, presente na barra superior da aplicação.
+
+Sempre que o utilizador carrega neste botão, é gerada imediatamente uma nova configuração de jogo, mantendo a aplicação responsiva e sem necessidade de recarregar a página.
 
 ---
 
-## Como executar localmente
+## Deploy
 
-1. Garantir que o Python está instalado.
-2. Instalar a framework Flet:
-   ```bash
-   pip install flet
+A aplicação foi preparada para execução em ambiente web através do Flet, permitindo deploy em serviços como Replit.
+
+Para execução local:
+
+```bash
+python main.py
+```
+
+A aplicação utiliza:
+
+* host = 0.0.0.0
+* port = 8550 (ou 8080 em deploy)
+
+---
+
+## Estrutura do Projeto
+
+* main.py
+* solitaire.py
+* card.py
+* slot.py
+* model.py
+* images/
+* README.md
+
+---
+
+## Autor
+
+João Oliveira
